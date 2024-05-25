@@ -23,6 +23,15 @@ Matrix<T, nRows, nColumns>::Matrix(std::initializer_list<std::initializer_list<T
 }
 
 template <typename T, std::size_t nRows, std::size_t nColumns>
+Matrix<T, nRows, nColumns>::Matrix(const T& scalar)
+{ 
+    for (size_t i = 1; i <= nRows; ++i)
+        for (size_t j = 1; j <= nColumns; ++j)
+            elements.at(((i - 1) * nColumns) + (j - 1)) = scalar;
+    
+}
+
+template <typename T, std::size_t nRows, std::size_t nColumns>
 Matrix<T, nRows, nColumns>::Matrix(const Matrix& other) 
 {
     std::copy(other.elements.begin(), other.elements.end(), elements.begin());

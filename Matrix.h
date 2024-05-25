@@ -13,6 +13,7 @@ class Matrix
     public:
         Matrix();
         Matrix(std::initializer_list<std::initializer_list<T>> list);
+        Matrix(const T& scalar);
         Matrix(const Matrix& other);
         ~Matrix();
 
