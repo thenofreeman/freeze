@@ -15,6 +15,20 @@ template <typename T, std::size_t nRows, std::size_t nColumns>
         }
 
 template <typename T, std::size_t nRows, std::size_t nColumns>
+    bool
+        operator==(const Matrix<T, nRows, nColumns>& lhs, const Matrix<T, nRows, nColumns>& rhs)
+        {
+            bool equals { true };
+
+            for (size_t i = 1; i <= nRows; ++i)
+                for (size_t j = 1; j <= nColumns; ++j)
+                    if (lhs.at(i, j) != rhs.at(i, j))
+                        return false;;
+
+            return equals;
+        }
+
+template <typename T, std::size_t nRows, std::size_t nColumns>
     Matrix<T, nRows, nColumns> 
         add(const Matrix<T, nRows, nColumns>& lhs, const Matrix<T, nRows, nColumns>& rhs)
         {
@@ -149,10 +163,6 @@ template <typename T, std::size_t nRows, std::size_t nColumns>
 template <typename T, std::size_t nRows, std::size_t nColumns>
     Matrix<T, nRows, nColumns> 
         trace(const Matrix<T, nRows, nColumns>& matrix);
-
-template <typename T, std::size_t nRows, std::size_t nColumns>
-    Matrix<T, nRows, nColumns> 
-        operator==(const Matrix<T, nRows, nColumns>& lhs, const Matrix<T, nRows, nColumns>& rhs);
 
 */
 
