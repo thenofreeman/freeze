@@ -65,4 +65,10 @@ T& Matrix<T, nRows, nColumns>::at(std::size_t row, std::size_t col)
     return const_cast<T&>(const_cast<const Matrix&>(*this).at(row, col));
 }
 
+template <typename T, std::size_t nRows, std::size_t nColumns>
+std::pair<int, int> Matrix<T, nRows, nColumns>::getDimensions() const
+{
+    return { nRows, nColumns };
+}
+
 }

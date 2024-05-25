@@ -20,10 +20,7 @@ class Matrix
         const T& at(std::size_t row, std::size_t col) const;
         T& at(std::size_t row, std::size_t col);
 
-        std::pair<int, int> getDimensions() const
-        {
-            return { nRows, nColumns };
-        }
+        std::pair<int, int> getDimensions() const;
 
         Matrix<T, nRows, nColumns>& operator=(Matrix<T, nRows, nColumns>&& other) noexcept
         {
