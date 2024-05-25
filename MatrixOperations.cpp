@@ -54,11 +54,62 @@ template <typename T, std::size_t nRows, std::size_t nColumns, typename Other>
             return add(other, rhs);
         }
 
-/*
+template <typename T, std::size_t nRows, std::size_t nColumns>
+    Matrix<T, nRows, nColumns> 
+        operator-(const Matrix<T, nRows, nColumns>& rhs)
+        {
+            Matrix<T, nRows, nColumns> temp;
+
+            for (size_t i = 1; i <= nRows; ++i)
+                for (size_t j = 1; j <= nColumns; ++j)
+                    temp.at(i, j) = -rhs.at(i, j);
+
+            return temp;
+        }
 
 template <typename T, std::size_t nRows, std::size_t nColumns>
     Matrix<T, nRows, nColumns> 
-        subtract(const Matrix<T, nRows, nColumns>& lhs, const Matrix<T, nRows, nColumns>& rhs);
+        subtract(const Matrix<T, nRows, nColumns>& lhs, const Matrix<T, nRows, nColumns>& rhs)
+        {
+            return add(lhs, -rhs);
+        }
+
+template <typename T, std::size_t nRows, std::size_t nColumns, typename Other>
+    Matrix<T, nRows, nColumns> 
+        subtract(const Matrix<T, nRows, nColumns>& lhs, const Other& other)
+        {
+            return add(lhs, -Matrix<T, nRows, nColumns>(other));
+        }
+
+template <typename T, std::size_t nRows, std::size_t nColumns, typename Other>
+    Matrix<T, nRows, nColumns> 
+        subtract(const Other& other, const Matrix<T, nRows, nColumns>& rhs)
+        {
+            return add(Matrix<T, nRows, nColumns>(other), -rhs);
+        }
+
+template <typename T, std::size_t nRows, std::size_t nColumns>
+    Matrix<T, nRows, nColumns> 
+        operator-(const Matrix<T, nRows, nColumns>& lhs, const Matrix<T, nRows, nColumns>& rhs)
+        {
+            return add(lhs, -rhs);
+        }
+
+template <typename T, std::size_t nRows, std::size_t nColumns, typename Other>
+    Matrix<T, nRows, nColumns> 
+        operator-(const Matrix<T, nRows, nColumns>& lhs, const Other& other)
+        {
+            return add(lhs, -other);
+        }
+
+template <typename T, std::size_t nRows, std::size_t nColumns, typename Other>
+    Matrix<T, nRows, nColumns> 
+        operator-(const Other& other, const Matrix<T, nRows, nColumns>& rhs)
+        {
+            return add(other, -rhs);
+        }
+
+/*
 
 template <typename T, std::size_t nRows, std::size_t nColumns>
     Matrix<T, nRows, nColumns> 
