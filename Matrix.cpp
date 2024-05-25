@@ -23,6 +23,12 @@ Matrix<T, nRows, nColumns>::Matrix(std::initializer_list<std::initializer_list<T
 }
 
 template <typename T, std::size_t nRows, std::size_t nColumns>
+Matrix<T, nRows, nColumns>::Matrix(const Matrix& other) 
+{
+    std::copy(other.elements.begin(), other.elements.end(), elements.begin());
+}
+
+template <typename T, std::size_t nRows, std::size_t nColumns>
 Matrix<T, nRows, nColumns>::~Matrix()
 { }
 
@@ -41,7 +47,7 @@ const T& Matrix<T, nRows, nColumns>::at(std::size_t row, std::size_t col) const
     if (col <= 0)
         throw std::out_of_range("Column index below indexable range.");
 
-    return elements[(row * col) - 1];
+    return elements[((row - 1) * nColumns) + (col - 1)];
 }
 
 template <typename T, std::size_t nRows, std::size_t nColumns>
