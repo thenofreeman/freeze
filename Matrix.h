@@ -25,6 +25,14 @@ class Matrix
             return { nRows, nColumns };
         }
 
+        Matrix<T, nRows, nColumns>& operator=(Matrix<T, nRows, nColumns>&& other) noexcept
+        {
+            if (this != &other)
+                elements = std::move(other.elements);
+
+            return *this;
+        }
+    
     public:
 
     private:
