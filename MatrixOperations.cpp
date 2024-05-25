@@ -19,7 +19,7 @@ template <typename T, std::size_t nRows, std::size_t nColumns>
         add(const Matrix<T, nRows, nColumns>& lhs, const Matrix<T, nRows, nColumns>& rhs)
         {
             if (lhs.getDimensions() != rhs.getDimensions())
-                throw std::invalid_argument("Matrixes being operated on have different dimensions.");
+                throw std::invalid_argument("Matrices being operated on have different dimensions.");
 
             Matrix<T, nRows, nColumns> temp;
 
