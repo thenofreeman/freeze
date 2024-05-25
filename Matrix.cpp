@@ -42,6 +42,16 @@ Matrix<T, nRows, nColumns>::~Matrix()
 { }
 
 template <typename T, std::size_t nRows, std::size_t nColumns>
+Matrix<T, nRows, nColumns>& 
+Matrix<T, nRows, nColumns>::operator=(Matrix<T, nRows, nColumns>&& other) noexcept
+{
+    if (this != &other)
+        elements = std::move(other.elements);
+
+    return *this;
+}
+
+template <typename T, std::size_t nRows, std::size_t nColumns>
 const T& Matrix<T, nRows, nColumns>::at(std::size_t row, std::size_t col) const
 {
     if (row > nRows) 
@@ -66,7 +76,8 @@ T& Matrix<T, nRows, nColumns>::at(std::size_t row, std::size_t col)
 }
 
 template <typename T, std::size_t nRows, std::size_t nColumns>
-std::pair<int, int> Matrix<T, nRows, nColumns>::getDimensions() const
+std::pair<int, int> 
+Matrix<T, nRows, nColumns>::getDimensions() const
 {
     return { nRows, nColumns };
 }
