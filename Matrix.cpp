@@ -18,7 +18,7 @@ Matrix<T, nRows, nColumns>::Matrix(std::initializer_list<std::initializer_list<T
         if (list.begin()[i].size() != nColumns)
             throw std::invalid_argument("Initializer list does not match intended number of columns.");
 
-        std::copy(list.begin()[i].begin(), list.begin()[i].end(), elements[i].begin());
+        std::copy(list.begin()[i].begin(), list.begin()[i].end(), elements.begin()+i*nColumns);
     }
 }
 
@@ -41,7 +41,7 @@ const T& Matrix<T, nRows, nColumns>::at(std::size_t row, std::size_t col) const
     if (col <= 0)
         throw std::out_of_range("Column index below indexable range.");
 
-    return elements[row-1][col-1];
+    return elements[(row * col) - 1];
 }
 
 template <typename T, std::size_t nRows, std::size_t nColumns>

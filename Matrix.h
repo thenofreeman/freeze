@@ -22,13 +22,13 @@ class Matrix
         {
             return { nRows, nColumns };
         }
-    
+
     public:
 
     private:
 
     private:
-        std::array<std::array<T, nColumns>, nRows> elements;
+        std::array<T, nRows + nColumns> elements;
 
 };
 
