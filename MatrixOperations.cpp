@@ -5,7 +5,6 @@
 namespace ns
 {
 
-
 template <typename T, std::size_t nRows, std::size_t nColumns>
     std::ostream&
         operator<<(std::ostream& os, const Matrix<T, nRows, nColumns>& matrix)
