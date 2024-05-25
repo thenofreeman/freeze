@@ -2,6 +2,8 @@
 
 #include <initializer_list>
 #include <array>
+#include <iomanip>
+#include <sstream>
 #include <utility>
 
 namespace ns 
@@ -23,6 +25,10 @@ class Matrix
         T& at(std::size_t row, std::size_t col);
 
         std::pair<int, int> getDimensions() const;
+
+        template <typename t, std::size_t nrows, std::size_t ncolumns>
+            friend std::ostream& operator<<(std::ostream& os, const Matrix<T, nRows, nColumns>& matrix);
+        std::string toString() const;
     
     public:
 

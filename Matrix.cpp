@@ -82,4 +82,45 @@ template <typename T, std::size_t nRows, std::size_t nColumns>
             return { nRows, nColumns };
         }
 
+template <typename T, std::size_t nRows, std::size_t nColumns>
+    std::string 
+        Matrix<T, nRows, nColumns>::toString() const
+        {
+            std::stringstream output;
+
+            std::array<int, nColumns> columnWidths;
+            columnWidths.fill(0);
+
+            for (std::size_t i = 1; i <= nRows; ++i)
+            {
+                for (std::size_t j = 1; j <= nColumns; ++j)
+                {
+                    int value = at(i, j);
+                    int width = std::to_string(value).length();
+
+                    if (value < 0) 
+                        width++;
+                    if (width > columnWidths[j - 1]) 
+                        columnWidths[j - 1] = width;
+                }
+            }
+
+            for (std::size_t i = 1; i <= nRows; ++i)
+            {
+                output << '[';
+
+                for (std::size_t j = 1; j <= nColumns; ++j)
+                {
+                    output << ' ' << std::setw(columnWidths[j - 1]) << at(i, j);
+                }
+
+                if (i != nRows) 
+                    output << " ]" << '\n';
+                else 
+                    output << " ]";
+            }
+
+            return output.str();
+        }
+
 }
