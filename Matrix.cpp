@@ -27,7 +27,7 @@ template <typename T, std::size_t nRows, std::size_t nColumns>
     { 
         for (size_t i = 1; i <= nRows; ++i)
             for (size_t j = 1; j <= nColumns; ++j)
-                elements.at(((i - 1) * nColumns) + (j - 1)) = scalar;
+                at(i, j) = scalar;
         
     }
 
