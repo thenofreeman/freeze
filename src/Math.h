@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Matrix.h"
+#include "Math/Matrix.h"
 
-#include "MathUtility.h"
+#include "Math/MathUtility.h"
