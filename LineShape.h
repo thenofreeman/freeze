@@ -4,6 +4,9 @@
 
 #include "Coor.h"
 
+namespace ns
+{
+
 class LineShape : public ns::Shape
 {
     public:
@@ -25,3 +28,5 @@ class LineShape : public ns::Shape
         LineShape() = delete;
 
 };
+
+}
