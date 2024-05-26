@@ -1,5 +1,8 @@
 #pragma once
 
+namespace ns
+{
+
 template <typename T>
 struct Dim2
 {
@@ -16,3 +19,5 @@ struct Dim3
     T length;
 
 };
+
+}
