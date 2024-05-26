@@ -6,17 +6,14 @@ namespace ns
 template <typename T>
 struct Coor2
 {
-    T x;
-    T y;
+    T x, y;
 
 };
 
 template <typename T>
 struct Coor3
 {
-    T x;
-    T y;
-    T z;
+    T x, y, z;
 
 };
 
