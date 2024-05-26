@@ -6,17 +6,17 @@ namespace ns
 template <typename T>
 struct Dim2
 {
-    T width;
-    T height;
+    T w;
+    T h;
 
 };
 
 template <typename T>
 struct Dim3
 {
-    T width;
-    T height;
-    T length;
+    T w;
+    T h;
+    T l;
 
 };
 
