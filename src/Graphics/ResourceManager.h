@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
+#include <map>
 
 #include <SDL2/SDL_image.h>
 
@@ -14,20 +14,16 @@ namespace ns
 class ResourceManager
 {
     public:
-        virtual ~ResourceManager()
+        virtual ~ResourceManager();
 
-        static ResourceManager& getInstance()
-        {
-            static AssetManager instance;
-            return instance;
-        }
-
-        Texture* loadTexture(std::string path);
+        static ns::Texture& loadTexture(std::string path);
 
     public:
 
     private:
-        std::vector<Texture*> textures;
+        std::map<std::string, ns::Texture> textures;
+
+        static ResourceManager* Instance;
 
     private:
         ResourceManager();

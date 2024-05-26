@@ -3,32 +3,25 @@
 namespace ns
 {
 
+ResourceManager* ResourceManager::Instance = nullptr;
+
 ResourceManager::ResourceManager()
+    : Instance{this}
 { }
 
 ResourceManager::~ResourceManager()
+{ }
+
+ns::Texture& ResourceManager::loadTexture(std::string path)
 {
-    for (Texture* texture : textures)
-    {
-        delete texture; 
-    }
-}
+    auto& textureMap = Instance->textures;
 
-Texture* ResourceManager::loadTexture(std::string path)
-{
-    Texture* newTexture = new Texture;
+    ns::Texture& texture = textureMap[path];
 
-	if (!newTexture->load(path))
-	{
-		std::cerr << "Unable to load texture image " << path << "! SDL Error: " << SDL_GetError() << std::endl;
-        newTexture = nullptr;
-	}
-    else
-    {
-        //textures.push_back(newTexture);
-    }
+    if (!texture)
+        texture.load(path);
 
-    return newTexture;
+    return texture;
 }
 
 }
