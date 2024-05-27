@@ -6,7 +6,9 @@ namespace ns
 Window::Window(std::string title, Dim2<int> dimensions)
     : title{title},
       dimensions{dimensions},
-      window{nullptr}
+      window{nullptr},
+      renderer{nullptr},
+      screen{nullptr}
 { }
 
 Window::~Window()
