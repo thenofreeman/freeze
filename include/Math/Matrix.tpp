@@ -25,10 +25,7 @@ template <typename T, std::size_t nRows, std::size_t nColumns>
 template <typename T, std::size_t nRows, std::size_t nColumns>
     Matrix<T, nRows, nColumns>::Matrix(const T& scalar)
     { 
-        for (size_t i = 1; i <= nRows; ++i)
-            for (size_t j = 1; j <= nColumns; ++j)
-                at(i, j) = scalar;
-        
+        elements.fill(scalar);
     }
 
 template <typename T, std::size_t nRows, std::size_t nColumns>
@@ -43,10 +40,10 @@ template <typename T, std::size_t nRows, std::size_t nColumns>
 
 template <typename T, std::size_t nRows, std::size_t nColumns>
     Matrix<T, nRows, nColumns>& 
-        Matrix<T, nRows, nColumns>::operator=(Matrix<T, nRows, nColumns>&& other) noexcept
+        Matrix<T, nRows, nColumns>::operator=(const Matrix<T, nRows, nColumns>& other)
         {
             if (this != &other)
-                elements = std::move(other.elements);
+                std::copy(&other.elements.begin(), &other.elements.end(), &elements.begin());
 
             return *this;
         }
