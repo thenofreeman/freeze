@@ -1,7 +1,9 @@
 #pragma once
 
+#include <iostream>
 #include <string>
 
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include "Dim.h"
@@ -22,12 +24,14 @@ class Window : public ns::Frame
         bool isOpen() const;
         void update();
 
+    private:
+        static void resizeWindow(GLFWwindow* window, int width, int height);
+        static void processInput(GLFWwindow* window);
 
     private:
-        GLFWwindow* window;
-
         std::string title;
 
+        GLFWwindow* window;
         bool windowOpen;
 
 };

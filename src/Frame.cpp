@@ -1,4 +1,4 @@
-#include "Frame.h"
+#include "Freeze/Frame.h"
 
 namespace ns
 {
@@ -26,7 +26,7 @@ namespace ns
 
     void Frame::setDimensions(const ns::Dim2<int>& dim)
     { 
-        dimensions = dimensions;
+        dimensions = dim;
     }
 
     void Frame::setWidth(const int& width)

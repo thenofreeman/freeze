@@ -1,11 +1,11 @@
-#include "Window.h"
+#include "Freeze/Window.h"
 
 namespace ns
 {
 
 Window::Window(std::string title, ns::Dim2<int> dimensions)
-    : title{title},
-      Frame{dimensions},
+    : Frame{dimensions},
+      title{title},
       window{nullptr}
 { }
 
@@ -23,20 +23,35 @@ bool Window::initialize()
         // Initialization failed.
     }
 
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
     window = glfwCreateWindow(dimensions.w, dimensions.h, title.c_str(), NULL, NULL);
 
     if (!window)
     {
         // Window or OpenGL context creation failed.
+        std::cerr << "Failed to create GLFW window" << std::endl;
+        glfwTerminate();
+
+        return false;
     }
 
     glfwMakeContextCurrent(window);
 
-    // gladLoadGL(glfwGetProcAddress);
+    if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress))
+    {
+        std::cerr << "Failed to initialize GLAD" << std::endl;
+        return -1;
+    }
+
+    resizeWindow(window, dimensions.w, dimensions.h);
+    glfwSetFramebufferSizeCallback(window, resizeWindow);
 
     // glfwSetKeyCallback(window, key_callback);
 
-    // glfwSetFramebufferSizeCallback(..., framebufferSize_callback);
+    windowOpen = true;
 
     return success;
 }
@@ -65,11 +80,26 @@ void Window::update()
     }
     else
     {
-        int width, height;
-        glfwGetFramebufferSize(window, &width, &height);
+        processInput(window);
 
-        glViewport(0, 0, width, height);
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        glfwSwapBuffers(window);
+        glfwPollEvents();
     }
+}
+
+void Window::resizeWindow(GLFWwindow* window, int width, int height)
+{
+    if (window) // does nothing, but clears warning for unused param
+        glViewport(0, 0, width, height);
+}
+
+void Window::processInput(GLFWwindow* window)
+{
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
 }
 
 }
