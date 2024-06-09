@@ -3,9 +3,9 @@
 namespace ns
 {
 
-Window::Window(std::string title, Dim2<int> dimensions)
+Window::Window(std::string title, ns::Dim2<int> dimensions)
     : title{title},
-      dimensions{dimensions},
+      Frame{dimensions},
       window{nullptr}
 { }
 
@@ -23,7 +23,7 @@ bool Window::initialize()
         // Initialization failed.
     }
 
-    window = glfwCreateWindow(dimensions.w, dimensions.h, title, NULL, NULL);
+    window = glfwCreateWindow(dimensions.w, dimensions.h, title.c_str(), NULL, NULL);
 
     if (!window)
     {
@@ -32,13 +32,11 @@ bool Window::initialize()
 
     glfwMakeContextCurrent(window);
 
-    gladLoadGL(glfwGetProcAddress);
+    // gladLoadGL(glfwGetProcAddress);
 
     // glfwSetKeyCallback(window, key_callback);
 
     // glfwSetFramebufferSizeCallback(..., framebufferSize_callback);
-
-
 
     return success;
 }
@@ -54,21 +52,24 @@ bool Window::shutdown()
     return success;
 }
 
-bool Window::update()
+bool Window::isOpen() const
 {
-    bool success = true;
+    return windowOpen;
+}
 
-    if (windowOpen && !glfwWindowShouldClose(window))
+void Window::update()
+{
+    if (glfwWindowShouldClose(window))
+    {
+        windowOpen = false;
+    }
+    else
     {
         int width, height;
         glfwGetFramebufferSize(window, &width, &height);
 
         glViewport(0, 0, width, height);
-
-        success = false;
     }
-
-    return success;
 }
 
 }

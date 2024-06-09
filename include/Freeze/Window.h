@@ -19,6 +19,7 @@ class Window : public ns::Frame
         bool initialize();
         bool shutdown();
 
+        bool isOpen() const;
         void update();
 
 

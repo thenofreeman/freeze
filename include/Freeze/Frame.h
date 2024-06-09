@@ -1,9 +1,6 @@
 #pragma once
 
-#include <string>
-
 #include "Dim.h"
-#include "Tuple.h"
 
 namespace ns
 {
@@ -12,14 +9,15 @@ class Frame
 {
     public:
         Frame();
+        Frame(ns::Dim2<int> dimenstions);
         virtual ~Frame();
 
-        void setAspectRatio(const ns::Dim2<int>& dimensions);
-        void setDimensions(const ns::Dim2<int>& dimensions);
+        void setAspectRatio(const ns::Dim2<int>& dim);
+        void setDimensions(const ns::Dim2<int>& dim);
         void setWidth(const int& width);
         void setHeight(const int& height);
 
-        ns::Tuple2<int> getAspectRatio() const;
+        float getAspectRatio() const;
         ns::Dim2<int> getDimensions() const;
         int getWidth() const;
         int getHeight() const;
@@ -28,6 +26,8 @@ class Frame
 
     protected:
         ns::Dim2<int> dimensions;
+        float aspectRatio;
+        bool lockAspectRatio;
 };
 
 }
