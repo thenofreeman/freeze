@@ -22,6 +22,7 @@ class Window : public ns::Frame
         bool shutdown();
 
         bool isOpen() const;
+        void processInput();
         void update();
 
     private:
