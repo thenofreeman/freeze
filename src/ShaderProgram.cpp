@@ -11,13 +11,13 @@ ShaderProgram::ShaderProgram()
 ShaderProgram::~ShaderProgram()
 { }
 
-bool ShaderProgram::attachShader(ns::Shader* shader)
+void ShaderProgram::attachShader(ns::Shader* shader)
 { 
     glAttachShader(programID, shader->get());
     shaders.push_back(shader);
 }
 
-bool ShaderProgram::attachShader(const ns::ShaderType& stype, const char* path)
+void ShaderProgram::attachShader(const ns::ShaderType& stype, const char* path)
 {
     ns::Shader* shader = new ns::Shader(stype, path);
 

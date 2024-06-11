@@ -16,8 +16,8 @@ class ShaderProgram
         ShaderProgram();
         virtual ~ShaderProgram();
 
-        bool attachShader(ns::Shader* shader);
-        bool attachShader(const ns::ShaderType& stype, const char* path);
+        void attachShader(ns::Shader* shader);
+        void attachShader(const ns::ShaderType& stype, const char* path);
         void link() const;
         void deleteShaders();
         void use() const;
