@@ -6,8 +6,8 @@ namespace ns
 Triangle::Triangle()
 {
     ShaderProgram shaderProgram;
-    shaderProgram.attachShader(ShaderType::VERTEX, "../shaders/shader.vs");
-    shaderProgram.attachShader(ShaderType::FRAGMENT, "../shaders/shader.fs");
+    shaderProgram.attachShader(ShaderType::VERTEX, "../Freeze/shaders/shader.vs");
+    shaderProgram.attachShader(ShaderType::FRAGMENT, "../Freeze/shaders/shader.fs");
     shaderProgram.deleteShaders();
     shaderProgram.link();
 

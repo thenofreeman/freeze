@@ -21,6 +21,7 @@ bool ShaderProgram::attachShader(const ns::ShaderType& stype, const char* path)
 {
     ns::Shader* shader = new ns::Shader(stype, path);
 
+    glAttachShader(programID, shader->get());
     shaders.push_back(shader);
 }
 

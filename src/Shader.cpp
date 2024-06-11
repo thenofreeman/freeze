@@ -20,7 +20,6 @@ Shader::Shader(const ns::ShaderType& stype, const char* path)
         std::stringstream stream;
 
         stream << file.rdbuf();
-        std::cout << stream.str() << std::endl;
 
         file.close();
 
